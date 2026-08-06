@@ -18,3 +18,6 @@ workflow.add_node("Failure",failure_node)
 workflow.add_edge("InputNode","ValidateCredential")
 workflow.add_edge("Success",END)
 workflow.add_edge("Failure","InputNode")
+
+workflow.add_conditional_edges("ValidateCredential",router,{"success_node":"Success","failure_node":"Failure"})
+
