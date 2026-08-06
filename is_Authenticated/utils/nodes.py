@@ -9,9 +9,9 @@ def input_node(state):
     password = input('Enter your Password')
 
     if state.get('user_name','') == '':
-        return {"username":username,"password":password}
+        return {"user_name": username, "password": password}
     else:
-        return {"password":password}
+        return {"password": password}
 
 
 def validate_credentials_node(state):
@@ -26,7 +26,7 @@ def validate_credentials_node(state):
     else:
         is_Authenticated = False
 
-    return {"is_Authenticated : " : is_Authenticated}
+    return {"is_Authenticated": is_Authenticated}
 
 
 def success_node(state):
