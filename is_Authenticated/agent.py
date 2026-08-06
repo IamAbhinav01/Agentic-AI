@@ -15,3 +15,6 @@ workflow.add_node("ValidateCredential",validate_credentials_node)
 workflow.add_node("Success",success_node)
 workflow.add_node("Failure",failure_node)
 
+workflow.add_edge("InputNode","ValidateCredential")
+workflow.add_edge("Success",END)
+workflow.add_edge("Failure","InputNode")
