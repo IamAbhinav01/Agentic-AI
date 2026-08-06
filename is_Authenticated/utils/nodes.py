@@ -1,4 +1,4 @@
-from state import AuthState
+from .state import AuthState
 
 def input_node(state):
     print(state)
@@ -51,5 +51,5 @@ auth__state2 :AuthState = {
     "output" : "Login Failed"
 }
 
-print(validate_credentials_node(auth__state1))
-print(validate_credentials_node(auth__state2))
+# print(validate_credentials_node(auth__state1))
+# print(validate_credentials_node(auth__state2))

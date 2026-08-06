@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings,SettingsConfigDict
 from functools import lru_cache
+from typing import ClassVar
 
 load_dotenv()
 
@@ -14,7 +15,7 @@ class Settings(BaseSettings):
     GROQ_MAX_TOKENS:int = 4096
     TEMPERATURE:float = 0.7
 
-    llm_config = SettingsConfigDict(env_file='.env',env_file_encoding='utf-8',extra=True)
+    model_config: ClassVar[SettingsConfigDict] = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8', extra='allow')
 
 @lru_cache
 def server_config()->Settings:
