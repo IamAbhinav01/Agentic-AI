@@ -21,3 +21,10 @@ workflow.add_edge("Failure","InputNode")
 
 workflow.add_conditional_edges("ValidateCredential",router,{"success_node":"Success","failure_node":"Failure"})
 
+workflow.set_entry_point("InputNode")
+
+app = workflow.compile()
+
+inputs = {"user_name":"iamAbhinav01"}
+result = app.invoke(inputs)
+print(result)
