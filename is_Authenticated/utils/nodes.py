@@ -28,6 +28,15 @@ def validate_credentials_node(state):
 
     return {"is_Authenticated : " : is_Authenticated}
 
+
+def success_node(state):
+    username = state.get("user_name","")
+    return {"output":f"Authentication Successful , Hi {username}"}
+
+def failure_node(state):
+    username = state.get("user_name","")
+    return {"output":f"Authentication failed , try Again {username} 😑"}
+
 auth__state1 :AuthState = {
     "user_name" : "iamAbhinav01",
     "password"  : "HeHEHE",
