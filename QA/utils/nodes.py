@@ -1,4 +1,5 @@
 from state import QAState
+from llm import llm_client
 
 def input_node(state):
     print(state)
@@ -22,12 +23,26 @@ def context_provider_node(state):
     
     return {"context":None}
 
+def llm_node(state):
+    question = state.get("question","")
+    context = state.get("context",None)
 
+    if not context:
+        return {"answer" : "I don't have enough context to answer your question."}
+
+    prompt = f"Context : {context}\n Question : {question}\n Answer the question based on the provided context."
+
+    try:
+        llm = llm_client()
+        response = llm.invoke(prompt)
+        return {"answer":response.content.strip()}
+    except Exception as e:
+        return {"answer":f"An error occured {str(e)}"}
 
 # qa_state_example  = QAState(
-#     question="",
+#     question="what kind of work iam doing",
 #     context="This project focuses on building a chatbot using Python.",
 #     answer=None
 # )
 
-# print(input_node(qa_state_example))
+# print(llm_node(qa_state_example))
