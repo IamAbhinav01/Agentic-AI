@@ -9,6 +9,21 @@ def input_node(state):
 
     return {"valid":True}
 
+
+def context_provider_node(state):
+    question = state.get("question","").lower()
+
+    if "langgraph" in question or "guided project" in question:
+        context = (
+            "This guided project is about using LangGraph, a Python library to design state-based workflows. "
+            "LangGraph simplifies building complex applications by connecting modular nodes with conditional edges."
+        )
+        return {"context":context}
+    
+    return {"context":None}
+
+
+
 # qa_state_example  = QAState(
 #     question="",
 #     context="This project focuses on building a chatbot using Python.",
