@@ -1,8 +1,19 @@
-from state import QAState
-from llm import llm_client
+try:
+    from .state import QAState
+    from .llm import llm_client
+except ImportError:
+    import sys
+    from pathlib import Path
+
+    ROOT_DIR = Path(__file__).resolve().parents[1]
+    if str(ROOT_DIR) not in sys.path:
+        sys.path.insert(0, str(ROOT_DIR))
+
+    from state import QAState
+    from llm import llm_client
 
 def input_node(state):
-    print(state)
+    # print(state)
     question = state.get("question","").strip()
 
     if not question:

@@ -5,8 +5,12 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+try:
+    from ..config.serverConfig import server_config
+except ImportError:
+    from config.serverConfig import server_config
+
 from langchain_groq import ChatGroq
-from config.serverConfig import server_config
 from functools import lru_cache
 
 
